@@ -1,0 +1,20 @@
+CC=gcc
+CCFLAGS=-c -Wall -Wextra -ansi -g
+LDFLAGS=
+SOURCES=main.c prn.c
+OBJECTS=$(SOURCES:.c=.o)
+EXECUTABLE=main
+
+all: $(SOUCES) $(EXECUTABLE)
+
+$(EXECUTABLE): $(OBJECTS)
+	  $(CC) $(LDFLAGS) $(OBJECTS) -o $@
+	    
+.c.o:
+	  $(CC) $(CCFLAGS) $< -o $@
+
+clear:
+	  rm *.o
+	    
+clean:
+	rm *.o $(EXECUTABLE)
