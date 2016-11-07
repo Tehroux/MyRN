@@ -8,18 +8,18 @@
 #include <sys/stat.h>
 
 /*
- * gestion des fichier de donnee PRN
+ * Management of PNR's datafile
  */
 
-struct PRN {
+typedef struct PRN {
 	int height;
 	int width;
 	int **value;
-};
+} PRN;
 
-struct PRN * initPRN();
-void printPRN(struct PRN *prn);
-void genPRN(struct PRN *prn, char *path);
-void freePRN(struct PRN **prn);
+PRN * initPRN();
+void printPRN(PRN *prn);
+void genPRN(PRN *prn, char *path);
+void freePRN(PRN **prn);
 
-#endif
+#endif /* PRN_H */
