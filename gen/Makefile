@@ -3,7 +3,7 @@ CCFLAGS=-c -Wall -Wextra -ansi -g
 LDFLAGS=
 SOURCES=main.c prn.c
 OBJECTS=$(SOURCES:.c=.o)
-EXECUTABLE=main
+EXECUTABLE=prn
 
 all: $(SOUCES) $(EXECUTABLE)
 

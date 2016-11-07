@@ -20,5 +20,6 @@ struct PRN {
 struct PRN * initPRN();
 void printPRN(struct PRN *prn);
 void genPRN(struct PRN *prn, char *path);
+void freePRN(struct PRN **prn);
 
 #endif
