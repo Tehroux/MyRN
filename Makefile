@@ -1,6 +1,6 @@
 CC=gcc
 CCFLAGS=-c -Wall -Wextra -ansi -g
-LDFLAGS=
+LDFLAGS=-lm
 SOURCES=main.c matrice.c
 OBJECTS=$(SOURCES:.c=.o)
 EXECUTABLE=prn
