@@ -29,10 +29,13 @@ Neuron * initNeuron(int nbNeighbors, List_i *neighbors)
 
 double executeNeuron(Neuron *neuron, double *result)
 {
-	double result = 0;
+	double r = 0;
 	Element_i *neighbors = neuron->neighbors->head;
 	Element_f *weight = neuron->weight->head;
 	while (neighbors != NULL) {
-		result 
+		r += result[neuron->neighbors->value] * weight->value;
+		neighbors = neighbors->next;
+		weight = weight->next;
 	}
+	return sigmoid(r);
 }
