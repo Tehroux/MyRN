@@ -14,7 +14,8 @@ typedef struct Network {
 } Network;
 
 Network * initNetwork(int nbNeuron);
-void * inputNetwork(Network *network, int *input, int nbInput);
+void inputNetwork(Network *network, double *input, int nbInput);
+void executeNetwork(Network *network);
 
 /*
  * builder

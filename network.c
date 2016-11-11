@@ -3,6 +3,7 @@
 Network * initNetwork(int nbNeuron)
 {
 	int i;
+	srand(time(0));
 	Network *network = NULL;
 	network = malloc(sizeof(network));
 	network->nbNeuron = nbNeuron;
@@ -14,12 +15,23 @@ Network * initNetwork(int nbNeuron)
 	return network;
 }
 
-void * inputNetwork(Network *network, int *input, int nbInput)
+void inputNetwork(Network *network, double *input, int nbInput)
 {
 	int i;
 	for (i = 0; i < nbInput; i++) {
 		network->result[i] = input[i];
 	}
+}
+
+void executeNetwork(Network *network)
+{
+	int i;
+	for (i = 0; i < network->nbNeuron; i++) {
+		if (network->neurons[i]->nbNeighbors != 0) {
+			network->result[i] = executeNeuron(network->neurons[i],
+					network->result);
+		}
+	}	
 }
 
 /*
