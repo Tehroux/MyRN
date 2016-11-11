@@ -13,18 +13,21 @@ double sigmoid(double x)
  * neuron structure fuction
  */
 
-Neuron * initNeuron(int nbNeighbors, List_i *neighbors)
+Neuron * initNeuron()
 {
-	int i;
 	Neuron * neuron = NULL;
 	neuron = malloc(sizeof(Neuron));
-	neuron->nbNeighbors = nbNeighbors;
-	neuron->neighbors = neighboors;
+	neuron->nbNeighbors = 0;
+	neuron->neighbors = initList_i();
 	neuron->weight = initList_f();
-	for (i = 0; i < nbNeighbors; i++) {
-		addList_f(neuron->weight, (rand() % 100) / 100);
-	}
 	return neuron;
+}
+
+void addNeuron(Neuron *neuron, int neighbor)
+{
+	neuron->nbNeighbors++;
+	addList_i(neuron->neighbors, neighbor);
+	addList_f(neuron->weight, rand() % 100 / 100);
 }
 
 double executeNeuron(Neuron *neuron, double *result)
@@ -33,7 +36,7 @@ double executeNeuron(Neuron *neuron, double *result)
 	Element_i *neighbors = neuron->neighbors->head;
 	Element_f *weight = neuron->weight->head;
 	while (neighbors != NULL) {
-		r += result[neuron->neighbors->value] * weight->value;
+		r += result[neighbors->value] * weight->value;
 		neighbors = neighbors->next;
 		weight = weight->next;
 	}

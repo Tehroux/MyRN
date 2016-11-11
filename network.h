@@ -8,14 +8,18 @@
  */
 
 typedef struct Network {
-	Neuron *neurons;
+	int nbNeuron;
+	Neuron **neurons;
 	double *result;
 } Network;
 
-Network * initNetwork();
+Network * initNetwork(int nbNeuron);
+void * inputNetwork(Network *network, int *input, int nbInput);
 
 /*
  * builder
  */
+
+Network * testNetwork();
 
 #endif /* NETWORK_H */
