@@ -9,12 +9,15 @@
 
 typedef struct Network {
 	int nbNeuron;
+	int input;
+	int output;
 	Neuron **neurons;
 	double *result;
 } Network;
 
-Network * initNetwork(int nbNeuron);
+Network * initNetwork(int nbNeuron, int input, int output);
 void inputNetwork(Network *network, double *input, int nbInput);
+void outputNetwork(Network *network);
 void executeNetwork(Network *network);
 
 /*

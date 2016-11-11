@@ -40,5 +40,5 @@ double executeNeuron(Neuron *neuron, double *result)
 		neighbors = neighbors->next;
 		weight = weight->next;
 	}
-	return sigmoid(r);
+	return sigmoid(r) - 0.5;
 }
