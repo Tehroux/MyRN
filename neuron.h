@@ -19,12 +19,15 @@ double sigmoid(double  x);
 
 typedef struct NEURON {
 	int nbNeighbors;
+	int nbParent;
 	List_i *neighbors;
+	List_i *parent;
 	List_f *weight;
 } Neuron;	
 
 Neuron * initNeuron();
-void addNeuron(Neuron *neuron, int neighbor);
+void addNeuron(Neuron *neuron, int neighbor, double weight);
+void addParentNeuron(Neuron *neuron, int parent);
 double executeNeuron(Neuron * neuron, double *result);
 
 #endif /* NEURON_H */

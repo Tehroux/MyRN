@@ -18,16 +18,27 @@ Neuron * initNeuron()
 	Neuron * neuron = NULL;
 	neuron = malloc(sizeof(Neuron));
 	neuron->nbNeighbors = 0;
+	neuron->nbParent = 0;
 	neuron->neighbors = initList_i();
+	neuron->parent = initList_i();
 	neuron->weight = initList_f();
 	return neuron;
 }
 
-void addNeuron(Neuron *neuron, int neighbor)
+void addNeuron(Neuron *neuron, int neighbor, double weight)
 {
 	neuron->nbNeighbors++;
 	addList_i(neuron->neighbors, neighbor);
-	addList_f(neuron->weight, rand() % 100 / 100);
+	if (weight == 0)
+		addList_f(neuron->weight, rand() % 100 / 100);
+	else
+		addList_f(neuron->weight, weight);
+}
+
+void addParentNeuron(Neuron *neuron, int parent)
+{
+	neuron->nbParent++;
+	addList_i(neuron->parent, parent);
 }
 
 double executeNeuron(Neuron *neuron, double *result)

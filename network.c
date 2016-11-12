@@ -35,6 +35,12 @@ void outputNetwork(Network *network)
 	printf("\n");
 }
 
+void addNetwork(Network *network, int a, int b, double weight)
+{
+	addNeuron(network->neurons[b], a, weight);
+	addParentNeuron(network->neurons[a], b);
+}
+
 void executeNetwork(Network *network)
 {
 	int i;
@@ -55,8 +61,8 @@ Network * testNetwork()
 	Network *network = NULL;
 	network = initNetwork(3, 2, 1);
 
-	addNeuron(network->neurons[2], 0);
-	addNeuron(network->neurons[2], 1);
+	addNetwork(network, 0 ,2, 0.3);
+	addNetwork(network, 1, 2, 0.3);
 
 	return network;
 }
