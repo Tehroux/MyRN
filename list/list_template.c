@@ -12,15 +12,14 @@ int main()
         printf("%s\n", (is_empty(list)? "True" : "False"));
         
         Element(int) *e = new_element(int, 1);
-        if (e != NULL) {
-        
-            printf("e->value = %d\n", e->value);
-            
-            add(list, e);
-            printf("%s\n", (is_empty(list)? "True" : "False"));
-            
-            free(e);
+        if (e != NULL) {        
+            printf("e->value = %d\n", e->value);            
+            add(list, e);            
         }
+        
+        printf("%s\n", (is_empty(list)? "True" : "False"));
+        
+        free(pop(list));
         free(list);
         
     }
