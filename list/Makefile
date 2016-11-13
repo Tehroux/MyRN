@@ -1,9 +1,9 @@
 CC=gcc
 CCFLAGS=-c -Wall -Wextra -ansi -g
 LDFLAGS=-lm
-SOURCES=main.c list.c
+SOURCES=list_template.c
 OBJECTS=$(SOURCES:.c=.o)
-EXECUTABLE=list
+EXECUTABLE=list_template
 
 all: $(SOUCES) $(EXECUTABLE)
 
