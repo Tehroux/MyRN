@@ -29,5 +29,6 @@ Neuron * initNeuron();
 void addNeuron(Neuron *neuron, int neighbor, double weight);
 void addParentNeuron(Neuron *neuron, int parent);
 double executeNeuron(Neuron * neuron, double *result);
+double getWeightNeuron(Neuron *neuron, int neighbor);
 
 #endif /* NEURON_H */

@@ -7,6 +7,5 @@ int main(int argc, char ** argv)
 	network = testNetwork();
 	inputNetwork(network, in, 2);
 	executeNetwork(network);
-	outputNetwork(network);
 	return 0;
 }

@@ -31,8 +31,7 @@ void addNeuron(Neuron *neuron, int neighbor, double weight)
 	addList_i(neuron->neighbors, neighbor);
 	if (weight == 0)
 		addList_f(neuron->weight, rand() % 100 / 100);
-	else
-		addList_f(neuron->weight, weight);
+
 }
 
 void addParentNeuron(Neuron *neuron, int parent)
@@ -52,4 +51,16 @@ double executeNeuron(Neuron *neuron, double *result)
 		weight = weight->next;
 	}
 	return sigmoid(r) - 0.5;
+}
+
+double getWeightNeuron(Neuron *neuron, int neighbor)
+{
+	Element_i *neighbors = neuron->neighbors->head;
+	Element_f *weight = neuron->weight->head;
+	while (neighbors != NULL && neighbors->value != neighbor) {
+		neighbors = neighbors->next;	
+	}
+	if (neighbors != NULL)
+		return weight->value;
+	return 0;
 }

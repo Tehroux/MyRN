@@ -25,14 +25,14 @@ void inputNetwork(Network *network, double *input, int nbInput)
 	}
 }
 
-void outputNetwork(Network *network)
+void outputNetwork(Network *network, double *output)
 {
 	int i;
-	for (i = network->nbNeuron - network->output; 
-			i < network->nbNeuron; i++) {
-		printf("%f ; ",network->result[i]);
+	int startOutput = network->nbNeuron - network->output;
+	for (i = startOutput; i < network->nbNeuron; i++) {
+		output[i - startOutput] = network->result[i];
+		
 	}
-	printf("\n");
 }
 
 void addNetwork(Network *network, int a, int b, double weight)
@@ -50,6 +50,52 @@ void executeNetwork(Network *network)
 					network->result);
 		}
 	}	
+}
+
+/*
+ * learning algorithme : backpropagation
+ */
+
+double sommeSortiNeuron(Network *network, int indexNeuron, double *delta) {
+	double ret = 0;
+	Element_i *neighborsOut = network->neurons[indexNeuron]->parent->head;
+	while (neighborsOut != NULL) {
+		ret += delta[neighborsOut->value] * \
+			getWeightNeuron(network->neurons[neighborsOut->value], 
+					indexNeuron);
+	}
+	return ret;
+}
+
+void changeWeight(Network *network, double *delta)
+{
+	int i;
+	Element_f *weight = NULL;
+	for (i = network->input + 1; i < network->nbNeuron; i++) {
+		weight = network->neurons[i]->weight->head;
+		while (weight != NULL) {
+			weight->value += EPSILON * delta[i] * weight->value;
+		}
+	}
+}
+
+void backPropagation(Network *network, double *x, double *y)
+{
+	int i;
+	int startOutput = network->nbNeuron - network->output;
+	double *delta = NULL;
+	delta = malloc(network->nbNeuron * sizeof(double));
+	inputNetwork(network, x, network->output);
+	executeNetwork(network);
+	for (i = startOutput; i < network->nbNeuron; i++) {
+		delta[i] = network->result[i] * (1 - network->result[i]) * \
+    				(y[i-startOutput] - network->result[i]);
+	}
+	for (i = startOutput - 1; i >= network->input; i--) {
+		delta[i] = network->result[i] * (1 - network->result[i]) * \
+				sommeSortiNeuron(network, i, delta);
+	}
+	changeWeight(network, delta);
 }
 
 /*
