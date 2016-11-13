@@ -3,6 +3,10 @@
 int main(int argc, char ** argv)
 {
 	double in[2] = {-0.5, 0.5};
+	double example[4][2] = {{{ 0.5,  0.5}, { 0.5}},
+	      			{{ 0.5, -0.5}, {-0.5}},
+	       			{{-0.5,  0.5}, {-0.5}},
+				{{-0.5, -0.5}, {-0.5}}}
 	Network * network = NULL;
 	network = testNetwork();
 	inputNetwork(network, in, 2);

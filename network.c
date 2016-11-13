@@ -52,6 +52,16 @@ void executeNetwork(Network *network)
 	}	
 }
 
+void learnNetwork(Network *network, double ***example, int nbExample)
+{
+	int i, j;
+	for (i = 0; i < NBLEARN; i++) {
+		for (j = 0; j < nbExample; j++) {
+			backPropagation(example[i][0], example[i][1]);
+		}
+	}
+}
+
 /*
  * learning algorithme : backpropagation
  */
