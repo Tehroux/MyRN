@@ -50,7 +50,7 @@
             return list->size; \
         } \
         void list_add_##type(list_##type *list, list_element_##type *e){ \
-            if (list != NULL) { \
+            if (list != NULL) { \
                 if (list->head == NULL) { \
                     list->head = e; \
                     list->queue = e; \
@@ -59,7 +59,7 @@
                     list->queue = e; \
                 } \
                 list->size++; \
-            } \
+            } \
         } \
         \
         _list_functions_##type _list_func_##type = { \
