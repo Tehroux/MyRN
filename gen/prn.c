@@ -5,7 +5,6 @@
  */
 PRN * initPRN()
 {
-
 	int i, j;
 	PRN *prn = NULL;
 	prn =  malloc(sizeof(struct PRN));
@@ -26,15 +25,14 @@ PRN * initPRN()
 	}
 	
 	return prn;
-	
 }
 
 /*
  * PNR matrice displaying
  */
+
 void printPRN(PRN *prn)
 {
-
 	int i, j;
 	
 	printf("> Size: %d x %d \n", prn->height, prn->width);
@@ -43,20 +41,21 @@ void printPRN(PRN *prn)
 			printf(" %d", prn->value[i][j]);
 		}
 		printf("\n");
-	}
-	
+	}	
 }
 
 /*
  * PNR file generation
  */
+
 void genPRN(PRN *prn, char *path)
 {
 
 	int i, j;
 	int file;
 	
-	file = open(path, O_WRONLY | O_CREAT, S_IRWXU);
+	file = open(path, O_WRONLY | O_CREAT, S_IRUSR | S_IWUSR | \
+			S_IRGRP | S_IROTH);
 	write(file, &(prn->height), sizeof(int));
 	write(file, &(prn->width), sizeof(int));
 	
@@ -73,6 +72,7 @@ void genPRN(PRN *prn, char *path)
 /*
  * PNR structure releasing
  */
+
 void freePRN(PRN **prn)
 {
 
