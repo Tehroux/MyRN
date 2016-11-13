@@ -27,10 +27,16 @@ Neuron * initNeuron()
 
 void addNeuron(Neuron *neuron, int neighbor, double weight)
 {
+	int val;
 	neuron->nbNeighbors++;
 	addList_i(neuron->neighbors, neighbor);
-	if (weight == 0)
-		addList_f(neuron->weight, rand() % 100 / 100);
+	if (weight == 0){
+		val = rand() % 100;
+		addList_f(neuron->weight, (double)val / 100);
+		printf("%f \n", neuron->weight->head->value);
+	}
+	else 
+		addList_f(neuron->weight, weight);
 
 }
 

@@ -3,7 +3,7 @@
 
 #include "neuron.h"
 
-#define EPSILON 1
+#define EPSILON 10
 #define NBLEARN 500
 
 /*
@@ -23,7 +23,7 @@ void inputNetwork(Network *network, double *input, int nbInput);
 void outputNetwork(Network *network, double *output);
 void addNetwork(Network *network, int a, int b, double weight);
 void executeNetwork(Network *network);
-void learnNetwork(Network *network double ***example, int nbExample);
+void learnNetwork(Network *network ,double ***example, int nbExample);
 
 /*
  * learning algorithme : backpropogation
@@ -34,9 +34,15 @@ void changWeight(Network *network, double *delta);
 void backPropagation(Network *network, double *x, double *y);
 
 /*
- * builder
+ * network builder
  */
 
 Network * testNetwork();
+
+/*
+ * example builder
+ */
+
+double *** andExample();
 
 #endif /* NETWORK_H */
