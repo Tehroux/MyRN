@@ -14,6 +14,7 @@
             int (*is_empty)(const struct _list_##type*); \
             size_t (*size)(const struct _list_##type*); \
             void (*add)(struct _list_##type*, struct _list_element_##type*); \
+            struct _list_element_##type * (*pop)(struct _list_##type*); \
             \
         } _list_functions_##type; \
         \
@@ -38,6 +39,7 @@
         int list_is_empty_##type(const list_##type *list); \
         size_t list_size_##type(const list_##type *list); \
         void list_add_##type(list_##type *list, list_element_##type *e); \
+        list_element_##type * list_pop_##type(list_##type *list); \
         \
         /* Functions defining */ \
         int list_is_empty_##type(const list_##type *list){ \
@@ -61,11 +63,20 @@
                 list->size++; \
             } \
         } \
+        list_element_##type * list_pop_##type(list_##type *list){ \
+            if (list == NULL) return NULL; \
+            list_element_##type * tmp = list->head; \
+            if (tmp == NULL) return NULL; \
+            list->head = list->head->next; \
+            list->size--; \
+            return tmp; \
+        } \
         \
         _list_functions_##type _list_func_##type = { \
             &list_is_empty_##type, \
             &list_size_##type, \
-            &list_add_##type \
+            &list_add_##type, \
+            &list_pop_##type \
         }; \
         \
         list_##type * new_list_##type(){ \
@@ -93,5 +104,13 @@
     #define is_empty(collection) collection->functions->is_empty(collection)
     #define size(collection) collection->functions->size(collection)
     #define add(collection, element) collection->functions->add(collection, element)
+    #define pop(collection) collection->functions->pop(collection)
+    
+    /*
+       TODO: get(collection, i)
+       TODO: pop(collection)
+       TODO: remove(collection, i)
+       TODO: clean(collection)
+    */
     
 #endif /* LIST_TEMPLATE_H */
