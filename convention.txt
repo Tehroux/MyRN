@@ -7,6 +7,6 @@ e.g.
 	Neuron_add()
 
 Struct :
-We have one struct by file, the file is named after teh struct name.
+We have one struct by file, the file is named after the struct name.
 e.g.
 	struct list -> list.c/list.h
