@@ -26,9 +26,9 @@ typedef struct _neuron {
 Neuron * Neuron_init();
 void 	 Neuron_free(Neuron ** neuron);
 
-void	 Neuron_add_neighbor_in(Neuron *neuron, int neuron in, float weight);
-void	 Neuron_add_neighbor_out(Neuron *neuron, int neuron_out);
+void	 Neuron_addNeighborIn(Neuron *neuron, int neuron in, float weight);
+void	 Neuron_addNeighborOut(Neuron *neuron, int neuron_out);
 float	 Neuron_execute(Neuron *neuron, float *result);
-float   Neuron_getWeight(Neuron *neuron, int neighbor);
+float    Neuron_getWeight(Neuron *neuron, int neighbor);
 
 #endif /* NEURON_H */

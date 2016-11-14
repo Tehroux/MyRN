@@ -27,27 +27,37 @@ Neuron * Neuron_init()
 
 void Neuron_free(Neuron **neuron)
 {
-	destroy((*neuron)->neighbors_in);
-	destroy((*neuron)->neighbors_out);
-	destroy((*neuron)->weight);
+    if ((*neuron) != NULL) {
+	    destroy((*neuron)->neighbors_in);
+	    destroy((*neuron)->neighbors_out);
+	    destroy((*neuron)->weight);
 
-	free(*neuron);
-	*neuron = NULL;
+	    free(*neuron);
+	    *neuron = NULL;
+	}
 }
 
-void Neuron_add_neighbor_in(Neuron *neuron, int neuron_in, float weight)
+void Neuron_addNeighborIn(Neuron *neuron, int neuron_in, float weight)
 {
-	add(neuron->neighbors_in, new_element(int, neuron_in));
-	add(weight->weight, new_element(float, weight));
+    if (neuron != NULL) {
+	    add(neuron->neighbors_in, new_element(int, neuron_in));
+	    add(weight->weight, new_element(float, weight));
+	}
 }
 
-void Neuron_add_neighbor_out(Neuron *neuron, int neuron_out)
+void Neuron_addNeighborOut(Neuron *neuron, int neuron_out)
 {
-	add(neuron->neighbors_out, new_element(int, neuron_out);
+    if (neuron != NULL) {
+	    add(neuron->neighbors_out, new_element(int, neuron_out);
+	}
 }
 
 float Neuron_execute(Neuron *neuron, float *result)
 {
+    if (neuron != NULL || result != NULL) {
+        return 0.0;
+    }
+    
 	int i, n = size(neuron->neighbors_in);
 	float ret = 0.0;
 	Element(int) *neuron_in = neuron->neighbors_in->head;
@@ -56,14 +66,18 @@ float Neuron_execute(Neuron *neuron, float *result)
 	for (i = 0; i < n; i++) {
 		ret += result[neuron_in->value] * weight->value;
 		neuron_in = neuron_in->next;
-		weight = weight->next;
+        weight = weight->next;
 	}
-	
-	return sigmoid(ret + neuron->threshold);
+
+    return sigmoid(ret + neuron->threshold);
 }
 
 float Neuron_getWeight(Neuron *neuron, int neighbor)
 {
+    if (neuron != NULL) {
+        return 0.0;
+    }
+    
     int i, n = size(neuron->neighbors_in);
     float ret = 0.0
     Element(int) *neuron_in = neuron->neighbors_in->head;
