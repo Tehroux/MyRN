@@ -4,7 +4,7 @@
 #include "neuron.h"
 
 #define EPSILON 10
-#define NBLEARN 500
+#define NBLEARN 5000
 
 /*
  * structure neuron network

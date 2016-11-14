@@ -1,9 +1,9 @@
 #ifndef NEURON_H
 #define NEURON_H
 
+#include <stdlib.h>
 #include <math.h> 
 #include <time.h>
-#include <stdlib.h>
 
 #include "list/list.h"
 
@@ -23,6 +23,7 @@ typedef struct NEURON {
 	List_i *neighbors;
 	List_i *parent;
 	List_f *weight;
+	float threshold;
 } Neuron;	
 
 Neuron * initNeuron();

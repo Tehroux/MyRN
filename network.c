@@ -57,7 +57,7 @@ void learnNetwork(Network *network, double ***example, int nbExample)
 {
 	int i, j;
 	for (i = 0; i < NBLEARN; i++) {
-		printf("iter %d\n", i);
+		/* printf("Iter %d\r", i); */
 		for (j = 0; j < nbExample; j++) {
 			backPropagation(network, example[j][0], example[j][1]);
 		}
@@ -77,7 +77,7 @@ double sommeSortiNeuron(Network *network, int indexNeuron, double *delta) {
 					indexNeuron);
 		neighborsOut = neighborsOut->next;
 	}
-	return ret;
+	return ret + network->neurons[indexNeuron]->threshold;
 }
 
 void changeWeight(Network *network, double *delta)
@@ -110,6 +110,7 @@ void backPropagation(Network *network, double *x, double *y)
 				sommeSortiNeuron(network, i, delta);
 	}
 	changeWeight(network, delta);
+	free(delta);
 }
 
 /*

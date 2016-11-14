@@ -22,6 +22,7 @@ Neuron * initNeuron()
 	neuron->neighbors = initList_i();
 	neuron->parent = initList_i();
 	neuron->weight = initList_f();
+	neuron->threshold = -0.5;
 	return neuron;
 }
 
@@ -56,7 +57,7 @@ double executeNeuron(Neuron *neuron, double *result)
 		neighbors = neighbors->next;
 		weight = weight->next;
 	}
-	return sigmoid(r) - 0.5;
+	return sigmoid(r + neuron->threshold);
 }
 
 double getWeightNeuron(Neuron *neuron, int neighbor)
