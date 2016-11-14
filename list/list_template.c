@@ -13,7 +13,8 @@ int main()
     if (e != NULL)
         printf("e->value = %d\n", e->value);    
                 
-    add(list, e);  
+    add(list, e);
+ 	add(list, new_element(int, 42)); 
     printf("%s\n", (is_empty(list)? "True" : "False"));
 
     destroy(list);

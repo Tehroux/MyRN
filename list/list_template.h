@@ -39,7 +39,7 @@
         int                     list_is_empty_##type(const list_##type *list); \
         size_t                  list_size_##type(const list_##type *list); \
         void                    list_add_##type(list_##type *list, list_element_##type *e); \
-        type                    list_pop_##type(list_##type *list); \
+        type                    list_pop_##type(list_##type *list); \
         void                    list_clear_##type(list_##type *list); \
         void                    list_destroy_##type(list_##type *list); \
         \
@@ -94,7 +94,7 @@
             if (list != NULL) { \
                 list_clear_##type(list); \
                 free(list); \
-            } \
+            } \
         } \
         \
         _list_functions_##type _list_func_##type = { \
@@ -141,5 +141,6 @@
        TODO: destroy(collection)
        TODO: clear(collection)
     */
-    
+
+define_list(float)
 #endif /* LIST_TEMPLATE_H */
