@@ -1,9 +1,9 @@
 CC=gcc
 CCFLAGS=-c -Wall -Wextra -ansi -g
 LDFLAGS=-lm
-SOURCES=main.c matrice.c network.c neuron.c list/list.c
+SOURCES=
 OBJECTS=$(SOURCES:.c=.o)
-EXECUTABLE=prn
+EXECUTABLE=
 
 all: $(SOUCES) $(EXECUTABLE)
 

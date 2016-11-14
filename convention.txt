@@ -1,0 +1,12 @@
+Convention de nommage
+====================
+
+Function : 
+We use snake case (snake_case) prefixed by the struct name.
+e.g.
+	Neuron_add()
+
+Struct :
+We have one struct by file, the file is named after teh struct name.
+e.g.
+	struct list -> list.c/list.h
