@@ -117,7 +117,8 @@
         } \
         \
         list_element_##type * new_element_##type(const type value){ \
-            list_element_##type *e = (list_element_##type *) malloc(sizeof(list_element_##type)); \
+            list_element_##type *e = (list_element_##type *) malloc( \
+			    sizeof(list_element_##type)); \
             e->value = value; \
             e->next = NULL; \
             return e; \

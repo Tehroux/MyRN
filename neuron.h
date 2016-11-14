@@ -1,0 +1,33 @@
+#ifndef NEURON_H
+#define NEURON_H
+
+#include "list.h"
+
+#include <stdlib.h>
+
+/*
+ * Threshold function : sigmoid
+ */
+
+float sigmoid(float x);
+
+/*
+ * Structure Neuron : 
+ * weight apply on neighbord_in
+ */
+
+typedef struct _neuron {
+	List(int) 	*neighbors_in;
+	List(int)	*neighbors_out;
+	List(float)	*weight;
+	float 		threshold;
+} Neuron;
+
+Neuron * Neuron_init();
+void 	 Neuron_free(Neuron ** neuron);
+
+void	 Neuron_add_neighbor_in(Neuron *neuron, int neuron in, float weight);
+void	 Neuron_add_neighbor_out(Neuron *neuron, int neuron_out);
+double	 Neuron_execute(Neuron *neuron, float *result);
+
+#endif /* NEURON_H */
