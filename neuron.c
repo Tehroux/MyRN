@@ -6,7 +6,7 @@
 
 float sigmoid(float x)
 {
-	return 1.0 / (1.0 + exp(-x);
+	return 1.0 / (1.0 + exp(-x));
 }
 
 /*
@@ -70,8 +70,9 @@ float Neuron_getWeight(Neuron *neuron, int neighbor)
 	Element(float) *weight = neuron->weight->head; 
 	
 	for (i = 0; i < n; i++) {
-	    if (neuron_in->value == neighbor)
+	    if (neuron_in->value == neighbor) {
 	        return weight->value;
+	    }
 	    neuron_in = neuron_in->next;
 		weight = weight->next;
 	}
