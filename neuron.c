@@ -46,16 +46,35 @@ void Neuron_add_neighbor_out(Neuron *neuron, int neuron_out)
 	add(neuron->neighbors_out, new_element(int, neuron_out);
 }
 
-double Neuron_execute(Neuron *neuron, float *result)
+float Neuron_execute(Neuron *neuron, float *result)
 {
-	int i;
+	int i, n = size(neuron->neighbors_in);
 	float ret = 0.0;
-	list_element_int *neuron_in = neuron->neighbors_in->head;
-	lsit_element_float *weight = neuron->weight->head;
-	for (i = 0; i < neuron->neighbors_in->size; i++) {
+	Element(int) *neuron_in = neuron->neighbors_in->head;
+	Element(float) *weight = neuron->weight->head;
+	
+	for (i = 0; i < n; i++) {
 		ret += result[neuron_in->value] * weight->value;
 		neuron_in = neuron_in->next;
 		weight = weight->next;
 	}
+	
 	return sigmoid(ret + neuron->threshold);
+}
+
+float Neuron_getWeight(Neuron *neuron, int neighbor)
+{
+    int i, n = size(neuron->neighbors_in);
+    float ret = 0.0
+    Element(int) *neuron_in = neuron->neighbors_in->head;
+	Element(float) *weight = neuron->weight->head; 
+	
+	for (i = 0; i < n; i++) {
+	    if (neuron_in->value == neighbor)
+	        return weight->value;
+	    neuron_in = neuron_in->next;
+		weight = weight->next;
+	}
+	
+    return 0.0;
 }

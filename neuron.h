@@ -1,7 +1,7 @@
 #ifndef NEURON_H
 #define NEURON_H
 
-#include "list.h"
+#include "list/list.h"
 
 #include <stdlib.h>
 
@@ -28,6 +28,7 @@ void 	 Neuron_free(Neuron ** neuron);
 
 void	 Neuron_add_neighbor_in(Neuron *neuron, int neuron in, float weight);
 void	 Neuron_add_neighbor_out(Neuron *neuron, int neuron_out);
-double	 Neuron_execute(Neuron *neuron, float *result);
+float	 Neuron_execute(Neuron *neuron, float *result);
+float   Neuron_getWeight(Neuron *neuron, int neighbor);
 
 #endif /* NEURON_H */

@@ -1,5 +1,5 @@
 #ifndef LIST_TEMPLATE_H
-#define LIST_TEMPLACE_H
+#define LIST_TEMPLATE_H
 
     #include <stdio.h>
     #include <stdlib.h>
