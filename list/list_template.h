@@ -137,10 +137,25 @@
     #define destroy(collection) collection->functions->destroy(collection)
     
     /*
-       TODO: pop(collection)
-       TODO: destroy(collection)
-       TODO: clear(collection)
-    */
+     * Call define_list(type) in top of your code to call the define preprocess.
+     * To use the list, use List(type) *list and Element(type) *elem.
+     * 
+     * To instanciate the list you have to use new_liste(type) :
+     * > List(type) *var = new_list(type);
+     * To instanciate a list element you have to use new_element(type) :
+     * > Element(type) *elem = new_element(type);
+     *
+     * The following functions are implemented :
+     * + void add(list, elem)
+     *  -> Append elem to the list, do nothing if the list is null
+     * + type pop(list)
+     *  -> Remove the first element to the list and return the value, 
+           return 0 if the list or the head are null
+     * + void clear(list)
+     *  -> Remove all the list, do nothig if the list is null
+     * + void destroy(list)
+     *  -> Remove all the list and free the list, do nothing if the list is null
+     */
 
 define_list(float)
 #endif /* LIST_TEMPLATE_H */
