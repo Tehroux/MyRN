@@ -156,6 +156,5 @@
      * + void destroy(list)
      *  -> Remove all the list and free the list, do nothing if the list is null
      */
-
-define_list(float)
+    
 #endif /* LIST_TEMPLATE_H */
