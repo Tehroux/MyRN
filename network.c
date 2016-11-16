@@ -35,7 +35,7 @@ Network * Network_init(int size, int input_size, int output_size)
 void Network_addInputValue(Network *network, float *value)
 {
     if (network != NULL && value != NULL) {
-        int i, n = network->size;
+        int i, n = network->inputSize;
         
         for (i = 0; i < n; i++) {
             network->results[i] = value[i];
@@ -58,14 +58,12 @@ void Network_addOutputValue(Network *network, float *value)
     }
 }
 
-/*
- * TODO: refactor a and b name
- */
-void Network_addNeuronLink(Network *network, int a, int b, float weight)
+void Network_addNeuronLink(Network *network, int father_index, int child_index, \
+        float weight)
 {
     if (network != NULL) {
-        Neuron_addNeighborIn(network->neurons[b], a, weight);
-        Neuron_addNeighbotOut(network->neurons[a], b);     
+        Neuron_addNeighborIn(network->neurons[child_index], father_index, weight);
+        Neuron_addNeighborOut(network->neurons[father_index], child_index);     
     }
 }
 
@@ -75,8 +73,7 @@ void Network_execute(Network *network)
         int i, n = network->size;
         
         for(i = 0; i < n; i++) {
-            /* TODO: neighbors_in or out ? (nbNeighbors precedently) */
-            if (size(network->neurons[i]->neighbors_out) != 0) {
+            if(size(network->neurons[i]->neighbors_in) != 0) {
                 network->results[i] = Neuron_execute(network->neurons[i],
                         network->results);
             }
@@ -93,19 +90,33 @@ void Network_learn(Network *network, float ***example, int example_size, \
         for (i = 0; i < learning_count; i++) {
             printf("Iteration number: %d\r", i);
             for (j = 0; j < example_size; j++) {
-                backpropagation(network, example[j][0], example[j][1]);
+                /*backpropagation(network, example[j][0], example[j][1]);*/
             }
         }    
+    }
+}
+
+void Network_free(Network **network)
+{
+    if ((*network) != NULL) {
+        int i;
+        
+        for (i = 0; i < (*network)->size; i++) {
+            Neuron_free(&((*network)->neurons[i]));        
+        }
+        free((*network)->results);
+        free(*network);
+        *network = NULL;
     }
 }
 
 /*
  * learning algorithme : backpropagation
  */
-
-double sommeSortiNeuron(Network *network, int indexNeuron, double *delta) {
-	double ret = 0;
-	Element_i *neighborsOut = network->neurons[indexNeuron]->parent->head;
+/*
+float sommeSortiNeuron(Network *network, int indexNeuron, float *delta) {
+	float ret = 0;
+	Element(int) *neighborsOut = network->neurons[indexNeuron]->parent->head;
 	while (neighborsOut != NULL) {
 		ret += delta[neighborsOut->value] * \
 			getWeightNeuron(network->neurons[neighborsOut->value], 
@@ -115,10 +126,10 @@ double sommeSortiNeuron(Network *network, int indexNeuron, double *delta) {
 	return ret + network->neurons[indexNeuron]->threshold;
 }
 
-void changeWeight(Network *network, double *delta)
+void changeWeight(Network *network, float *delta)
 {
 	int i;
-	Element_f *weight = NULL;
+	Element(float) *weight = NULL;
 	for (i = network->input; i < network->nbNeuron; i++) {
 		weight = network->neurons[i]->weight->head;
 		while (weight != NULL) {
@@ -128,12 +139,12 @@ void changeWeight(Network *network, double *delta)
 	}
 }
 
-void backPropagation(Network *network, double *x, double *y)
+void backPropagation(Network *network, float *x, float *y)
 {
 	int i;
 	int startOutput = network->nbNeuron - network->output;
-	double *delta = NULL;
-	delta = malloc(network->nbNeuron * sizeof(double));
+	float *delta = NULL;
+	delta = malloc(network->nbNeuron * sizeof(float));
 	inputNetwork(network, x, network->output);
 	executeNetwork(network);
 	for (i = startOutput; i < network->nbNeuron; i++) {
@@ -147,22 +158,22 @@ void backPropagation(Network *network, double *x, double *y)
 	changeWeight(network, delta);
 	free(delta);
 }
-
+*/
 /*
  * builder
  */
 
-Network * testNetwork()
+Network * Network_createTest()
 {
 	Network *network = NULL;
-	network = initNetwork(5, 2, 1);
+	network = Network_init(5, 2, 1);
 
-	addNetwork(network, 0 ,2, 0);
-	addNetwork(network, 1, 2, 0);
-	addNetwork(network, 0, 3, 0);
-	addNetwork(network, 1, 3, 0);
-	addNetwork(network, 2, 4, 0);
-	addNetwork(network, 3, 4, 0);
+	Network_addNeuronLink(network, 0 ,2, 0);
+	Network_addNeuronLink(network, 1, 2, 0);
+	Network_addNeuronLink(network, 0, 3, 0);
+	Network_addNeuronLink(network, 1, 3, 0);
+	Network_addNeuronLink(network, 2, 4, 0);
+	Network_addNeuronLink(network, 3, 4, 0);
 
 	return network;
 }
@@ -171,15 +182,15 @@ Network * testNetwork()
  * example builder
  */
 
-double *** andExample()
+float *** andExample()
 {
 	int i;
-	double ***example = NULL;
-	example = malloc(4 * sizeof(double **));
+	float ***example = NULL;
+	example = malloc(4 * sizeof(float **));
 	for (i = 0; i < 4; i++) {
-		example[i] = malloc(2 * sizeof(double *));
-		example[i][0] = malloc(2 * sizeof(double));
-		example[i][1] = malloc(sizeof(double));
+		example[i] = malloc(2 * sizeof(float *));
+		example[i][0] = malloc(2 * sizeof(float));
+		example[i][1] = malloc(sizeof(float));
 	}
 	example[0][0][0] = 0.5;
 	example[0][0][1] = 0.5;

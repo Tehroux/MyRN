@@ -1,56 +1,51 @@
 #ifndef NETWORK_H
 #define NETWORK_H
 
-#include "neuron.h"
+    #include "neuron.h"
 
-#define EPSILON 10
-#define NBLEARN 5000
+    #define EPSILON 10
+    #define NBLEARN 5000
 
-/*
- * structure neuron network
- */
+    /*
+     * structure neuron network
+     */
 
-typedef struct _network {
-    int size;
-    int inputSize;
-    int outputSize;
-    Neuron **neurons;
-    float *results;
-} Network;
+    typedef struct _network {
+        int size;
+        int inputSize;
+        int outputSize;
+        Neuron **neurons;
+        float *results;
+    } Network;
 
-typedef struct Network {
-	int nbNeuron;
-	int input;
-	int output;
-	Neuron **neurons;
-	double *result;
-} Network;
+    Network * Network_init(int size, int input_size, int output_size);
+    void Network_addInputValue(Network *network, float *value);
+    void Network_addOutputValue(Network *network, float *value);
+    void Network_addNeuronLink(Network *network, int father_index, \
+            int child_index, float weight);
+    void Network_execute(Network *network);
+    void Network_learn(Network *network, float ***example, int example_size, \
+            int learning_count);
+    void Network_free(Network **network);
+           
+    /*
+     * learning algorithme : backpropogation
+     */
 
-Network * initNetwork(int nbNeuron, int input, int output);
-void inputNetwork(Network *network, double *input, int nbInput);
-void outputNetwork(Network *network, double *output);
-void addNetwork(Network *network, int a, int b, double weight);
-void executeNetwork(Network *network);
-void learnNetwork(Network *network ,double ***example, int nbExample);
+    float sommeSortiNeuron(Network *network, int indexNeuron, float *delta);
+    void changWeight(Network *network, float *delta);
+    void backPropagation(Network *network, float *x, float *y);
 
-/*
- * learning algorithme : backpropogation
- */
+    /*
+     * network builder
+     */
 
-double sommeSortiNeuron(Network *network, int indexNeuron, double *delta);
-void changWeight(Network *network, double *delta);
-void backPropagation(Network *network, double *x, double *y);
+    Network * testNetwork();
 
-/*
- * network builder
- */
+    /*
+     * example builder
+     */
 
-Network * testNetwork();
-
-/*
- * example builder
- */
-
-double *** andExample();
+    float *** andExample();
 
 #endif /* NETWORK_H */

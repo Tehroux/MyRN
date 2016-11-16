@@ -41,7 +41,7 @@ void Neuron_addNeighborIn(Neuron *neuron, int neuron_in, float weight)
 {
     if (neuron != NULL) {
         add(neuron->neighbors_in, new_element(int, neuron_in));
-        add(weight->weight, new_element(float, weight));
+        add(neuron->weight, new_element(float, weight));
     }
 }
 
@@ -93,3 +93,5 @@ float Neuron_getWeight(Neuron *neuron, int neighbor)
 	
     return 0.0;
 }
+
+

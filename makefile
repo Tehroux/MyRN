@@ -2,7 +2,7 @@
 CC=gcc
 CFLAGS=-c -Wall -Wextra -ansi -g
 LDFLAGS=-lm
-SOURCES=main.c matrice.c network.c neuron.c list/list.c
+SOURCES=main.c matrice.c network.c neuron.c
 OBJECTS=$(SOURCES:.c=.o)
 EXE=prn
 

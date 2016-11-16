@@ -17,12 +17,12 @@ Picture * Picture_createFromFile(const char *path)
     if (pic == NULL)
         return NULL;
         
-    read(file, &(pic->height), sizeo(int));
+    read(file, &(pic->height), sizeof(int));
     read(file, &(pic->width), sizeof(int));
-    pic->value = (int *) malloc(sizeof(int *) * pic->height);
+    pic->value = (int **) malloc(sizeof(int *) * pic->height);
     
     for (i = 0; i < pic->height; i++) {
-        pic->value[i] = (int) malloc(sizeof(int) * pic->width);
+        pic->value[i] = (int *) malloc(sizeof(int) * pic->width);
         for (j = 0; j < pic->width; j++) {
             read(file, &(pic->value[i][j]), sizeof(int));
         }
