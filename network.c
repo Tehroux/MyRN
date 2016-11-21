@@ -1,4 +1,15 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include <time.h>
+
 #include "network.h"
+/* 
+ * #include "neuron.h"
+ *** #include "list.h"
+ ***** #include "list_template.h"
+ ******* #include <stdio.h>
+ ******* #include <stdlib.h>
+ */
 
 Network * Network_init(int size, int input_size, int output_size)
 {

@@ -2,11 +2,11 @@
 #define NEURON_H
 
     #include "list.h"
-
-    #include <stdlib.h>
-    #include <stdio.h>
-    #include <math.h>
-    #include <time.h>
+    /* 
+     * #include "list_template.h"
+     *** #include <stdio.h>
+     *** #include <stdlib.h>
+     */
 
     /*
      * Threshold function : sigmoid

@@ -150,8 +150,8 @@
      * + void add(list, elem)
      *  -> Append elem to the list, do nothing if the list is null
      * + type pop(list)
-     *  -> Remove the first element to the list and return the value, 
-           return 0 if the list or the head are null
+     *  -> Remove the first element to the list and return this value, 
+           return 0 if the list or the head is null
      * + void clear(list)
      *  -> Remove all the list, do nothig if the list is null
      * + void destroy(list)

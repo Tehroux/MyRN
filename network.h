@@ -2,6 +2,12 @@
 #define NETWORK_H
 
     #include "neuron.h"
+    /* 
+     * #include "list.h"
+     *** #include "list_template.h"
+     ***** #include <stdio.h>
+     ***** #include <stdlib.h>
+     */
 
     #define EPSILON 10
     #define NBLEARN 5000
@@ -40,7 +46,7 @@
      * network builder
      */
 
-    Network * testNetwork();
+    Network * Network_createTest();
 
     /*
      * example builder

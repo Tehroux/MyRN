@@ -1,4 +1,14 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include <math.h>
+
 #include "neuron.h"
+/* 
+ * #include "list.h"
+ *** #include "list_template.h"
+ ***** #include <stdio.h>
+ ***** #include <stdlib.h>
+ */
 
 /*
  * Threshold function : sigmoid
@@ -39,7 +49,7 @@ void Neuron_free(Neuron **neuron)
 
 void Neuron_addNeighborIn(Neuron *neuron, int neuron_in, float weight)
 {
-    if (neuron != NULL) {
+    if (neuron != NULL) {
         add(neuron->neighbors_in, new_element(int, neuron_in));
         add(neuron->weight, new_element(float, weight));
     }
@@ -48,7 +58,7 @@ void Neuron_addNeighborIn(Neuron *neuron, int neuron_in, float weight)
 void Neuron_addNeighborOut(Neuron *neuron, int neuron_out)
 {
     if (neuron != NULL) {
-        add(neuron->neighbors_out, new_element(int, neuron_out);
+        add(neuron->neighbors_out, new_element(int, neuron_out));
     }
 }
 
@@ -79,11 +89,10 @@ float Neuron_getWeight(Neuron *neuron, int neighbor)
     }
     
     int i, n = size(neuron->neighbors_in);
-    float ret = 0.0
     Element(int) *neuron_in = neuron->neighbors_in->head;
     Element(float) *weight = neuron->weight->head; 
 	
-    for (i = 0; i < n; i++) {
+   for (i = 0; i < n; i++) {
         if (neuron_in->value == neighbor) {
             return weight->value;
         }

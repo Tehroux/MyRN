@@ -1,4 +1,15 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include <time.h>
+
 #include "network.h"
+/* 
+ * #include "neuron.h"
+ *** #include "list.h"
+ ***** #include "list_template.h"
+ ******* #include <stdio.h>
+ ******* #include <stdlib.h>
+ */
 
 int main(int argc, char **argv)
 {
@@ -10,7 +21,7 @@ int main(int argc, char **argv)
 	float ***example = andExample();
 	Network *network = NULL;
 	
-	network = testNetwork();
+	network = Network_createTest();
 	
 	/*Network_learn(network, example, 4, 500);*/
 	Network_addInputValue(network, in);
